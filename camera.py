@@ -1,7 +1,9 @@
 import cv2 as cv
 from abc import ABC, abstractmethod
 import numpy as np
+from config import config
 
+params = config()
 
 class Camera(ABC):
     """
@@ -28,7 +30,7 @@ class WebCamera(Camera):
     Concrete implementation of Camera for webcams.
     """
 
-    def __init__(self, camera_index=0) -> None:
+    def __init__(self, camera_index=int(params['port'])) -> None:
         """
         Initializes the camera object with the given camera index.
 

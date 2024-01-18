@@ -2,6 +2,7 @@ from camera import WebCamera, DisplayCamera
 import cv2 as cv
 
 
+
 def main(camera, display):
     """
     Main application function to capture and display camera frames.
