@@ -5,6 +5,7 @@ from config import config
 
 params = config()
 
+
 class Camera(ABC):
     """
     Abstract base class representing a general camera interface.

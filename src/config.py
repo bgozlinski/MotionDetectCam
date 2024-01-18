@@ -2,7 +2,7 @@ from configparser import ConfigParser, ParsingError
 import os
 
 
-def config(filename='config.ini', section='camera'):
+def config(filename='../config/config.ini', section='camera'):
     """
     Reads configuration settings from a specified INI file.
 
