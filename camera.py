@@ -1,18 +1,19 @@
 import cv2 as cv
-import abc
+from abc import ABC, abstractmethod
 
-class Camera(abc.ABC):
-    @abc.abstractmethod
+
+class Camera(ABC):
+    @abstractmethod
     def get_frame(self):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def release(self):
         pass
 
 
 class WebCamera(Camera):
-    def __init__(self, camera_index = 0):
+    def __init__(self, camera_index=0):
         self.cap = cv.VideoCapture(camera_index)
 
     def get_frame(self):
