@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 import numpy as np
 from config import config
 
-params = config()
+params = config(section='camera')
 
 
 class Camera(ABC):

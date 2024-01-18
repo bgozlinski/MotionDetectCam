@@ -1,4 +1,5 @@
 from camera import WebCamera, DisplayCamera
+from motion_detector import MOG2MotionDetector
 import cv2 as cv
 
 
@@ -9,10 +10,19 @@ def main(camera, display):
     :param camera: The camera object to capture frames.
     :param display: The display object to show frames.
     """
+    motion_detector = MOG2MotionDetector()
     try:
         while True:
             frame = camera.get_frame()
+
+            motion_detected, fg_mask = motion_detector.detect(frame)
+
+            if motion_detected:
+                print("Motion detected!")
+
             display.show_frame(frame)
+            cv.imshow("MOG2 Foreground Mask", fg_mask)
+
             if cv.waitKey(1) & 0xFF == ord('q'):
                 break
 
