@@ -27,9 +27,9 @@ def config(filename='../config/config.ini', section='camera'):
         raise Exception(f"Section '{section}' not found in the '{filename}' file.")
 
     # Read parameters under the specified section
-    camera = {}
+    output = {}
     params = parser.items(section)
     for param in params:
-        camera[param[0]] = param[1]
+        output[param[0]] = param[1]
 
-    return camera
+    return output
