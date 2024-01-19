@@ -3,27 +3,29 @@ from motion_detector import MOG2MotionDetector
 import cv2 as cv
 
 
-def main(camera, display):
+def main(camera, display, motion_detector):
     """
     Main application function to capture and display camera frames.
 
     :param camera: The camera object to capture frames.
     :param display: The display object to show frames.
+    :param motion_detector: The motion detector algorithm to use to detect motion.
     """
-    motion_detector = MOG2MotionDetector()
+    warmup_frames = 100  # Number of frames to wait before starting motion detection
+    frame_count = 0
+
     try:
         while True:
             frame = camera.get_frame()
-
             motion_detected, fg_mask = motion_detector.detect(frame)
 
-            if motion_detected:
-                print("Motion detected!")
+            if frame_count > warmup_frames:
+                if motion_detected:
+                    print("Motion detected!")
+            else:
+                frame_count += 1
 
-            # display.show_frame('frame', frame)
-            # display.show_frame('MOG2', fg_mask)
             display.show_comparison(window_name='name', frames=[frame, fg_mask])
-
             if cv.waitKey(1) & 0xFF == ord('q'):
                 break
 
@@ -35,4 +37,5 @@ def main(camera, display):
 if __name__ == '__main__':
     camera = WebCamera()
     display = DisplayCamera()
-    main(camera, display)
+    motion_detector = MOG2MotionDetector()
+    main(camera, display, motion_detector)

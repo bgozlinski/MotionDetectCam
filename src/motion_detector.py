@@ -41,4 +41,10 @@ class MOG2MotionDetector(MotionDetector):
         fg_mask = self.background_subtractor.apply(frame)
         _, thresh = cv.threshold(fg_mask, int(params['threshold']), 255, cv.THRESH_BINARY)
         contours, _ = cv.findContours(thresh, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
-        return len(contours) > int(params['contours']), thresh
+
+        for contour in contours:
+            if cv.contourArea(contour) > int(params['contours']):
+                return True, thresh
+
+        return False, thresh
+        # return len(contours) > int(params['contours']), thresh
