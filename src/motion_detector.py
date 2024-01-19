@@ -2,6 +2,8 @@ import cv2 as cv
 import numpy as np
 from abc import ABC, abstractmethod
 from config import config
+from time import sleep
+
 
 params = config(section='motion')
 
@@ -29,6 +31,7 @@ class MOG2MotionDetector(MotionDetector):
         self.background_subtractor = cv.createBackgroundSubtractorMOG2()
 
     def detect(self, frame: np.ndarray) -> [bool, np.ndarray]:
+
         """
         Applies MOG2 background subtraction to detect motion.
 

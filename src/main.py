@@ -20,8 +20,9 @@ def main(camera, display):
             if motion_detected:
                 print("Motion detected!")
 
-            display.show_frame(frame)
-            cv.imshow("MOG2 Foreground Mask", fg_mask)
+            # display.show_frame('frame', frame)
+            # display.show_frame('MOG2', fg_mask)
+            display.show_comparison(window_name='name', frames=[frame, fg_mask])
 
             if cv.waitKey(1) & 0xFF == ord('q'):
                 break
