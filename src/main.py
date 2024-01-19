@@ -3,7 +3,7 @@ from motion_detector import MOG2MotionDetector
 import cv2 as cv
 
 
-def main(camera, display, motion_detector):
+def main(camera, display, motion_detector) -> None:
     """
     Main application function to capture and display camera frames.
 
