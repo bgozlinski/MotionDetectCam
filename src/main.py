@@ -1,5 +1,6 @@
 from camera import WebCamera, DisplayCamera
 from motion_detector import MOG2MotionDetector
+from filehandler import SaveImage
 import cv2 as cv
 
 
@@ -22,6 +23,7 @@ def main(camera, display, motion_detector) -> None:
             if frame_count > warmup_frames:
                 if motion_detected:
                     print("Motion detected!")
+                    SaveImage().save(frame, 'output/test.jpg')
             else:
                 frame_count += 1
 
